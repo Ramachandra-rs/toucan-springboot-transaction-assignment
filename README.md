@@ -104,3 +104,16 @@ The application follows a layered architecture:
                       |
                       v
                  H2 Database
+
+---text
+
+## Postman API Testing
+
+The REST APIs were manually tested using **Postman** to verify both
+successful operations and expected error scenarios.
+
+Postman was used to send HTTP requests to the locally running Spring Boot
+application at:
+
+```text
+http://localhost:8080
