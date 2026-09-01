@@ -2,7 +2,7 @@
 
 A Spring Boot REST API for managing customer transactions.
 
-This project was developed as part of the Customer Transactions coding exercise. The implementation focuses on clean Java design, validation, business rules, error handling, automated testing, and maintainable project structure.
+This project was developed as part of the Customer Transactions coding exercise. The implementation focuses on clean Java design, validation, business rules, error handling, automated testing, API testing, and maintainable project structure.
 
 ---
 
@@ -19,6 +19,19 @@ The application uses an embedded H2 database for persistence and exposes the fun
 
 ---
 
+## Assignment Requirements Covered
+
+This implementation addresses all required areas of the exercise:
+
+- **Validation rules:** Transaction ID, Customer ID, amount, currency, transaction type, and initial status are validated and documented.
+- **Status transition rules:** New transactions start as `PENDING`. Only `PENDING → COMPLETED` and `PENDING → FAILED` are permitted.
+- **Automated tests:** The project contains 8 automated tests covering successful operations and important validation/error scenarios.
+- **Error handling:** Application-specific exceptions and validation failures are handled centrally through `GlobalExceptionHandler` with appropriate HTTP status codes.
+- **Complete test suite:** The Maven test suite was executed successfully with 8 tests passing and no failures or errors.
+- **AI assistance disclosure:** AI assistance used during development, debugging, testing guidance, and documentation has been disclosed in this README.
+
+---
+
 ## Key Features
 
 - RESTful API using Spring Boot
@@ -31,7 +44,7 @@ The application uses an embedded H2 database for persistence and exposes the fun
 - Controlled transaction status transitions
 - Centralized exception handling
 - Consistent API error responses
-- Automated tests using JUnit
+- Automated testing using JUnit
 - Manual REST API testing using Postman
 - API test evidence screenshots
 
@@ -54,11 +67,30 @@ The application uses an embedded H2 database for persistence and exposes the fun
 
 ---
 
-## Architecture
+# API Summary
+
+| Operation | Method | Endpoint | Description | Success |
+|---|---|---|---|---|
+| Create Transaction | `POST` | `/api/transactions` | Creates a new transaction | `201 Created` |
+| Get Transaction | `GET` | `/api/transactions/{transactionId}` | Retrieves a transaction by ID | `200 OK` |
+| Update Status | `PATCH` | `/api/transactions/{transactionId}/status` | Changes a transaction's status | `200 OK` |
+| Get Customer Transactions | `GET` | `/api/customers/{customerId}/transactions` | Retrieves all transactions for a customer | `200 OK` |
+
+### Error Responses
+
+| HTTP Status | Scenario |
+|---|---|
+| `400 Bad Request` | Validation failure or invalid status transition |
+| `404 Not Found` | Transaction does not exist |
+| `409 Conflict` | Transaction ID already exists |
+
+---
+
+# Architecture
 
 The application follows a layered architecture:
 
-
+```text
                     Client
                       |
                       v
@@ -72,16 +104,3 @@ The application follows a layered architecture:
                       |
                       v
                  H2 Database
-
----
-
-## Postman API Testing
-
-The REST APIs were manually tested using **Postman** to verify both
-successful operations and expected error scenarios.
-
-Postman was used to send HTTP requests to the locally running Spring Boot
-application at:
-
-```text
-http://localhost:8080
