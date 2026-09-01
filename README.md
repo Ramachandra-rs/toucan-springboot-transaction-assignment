@@ -90,7 +90,7 @@ This implementation addresses all required areas of the exercise:
 
 The application follows a layered architecture:
 
-```text
+
                     Client
                       |
                       v
@@ -105,7 +105,7 @@ The application follows a layered architecture:
                       v
                  H2 Database
 
----text
+---
 
 ## Postman API Testing
 
