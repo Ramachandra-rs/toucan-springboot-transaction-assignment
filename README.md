@@ -73,6 +73,8 @@ The application follows a layered architecture:
                       v
                  H2 Database
 
+---
+
 ## Postman API Testing
 
 The REST APIs were manually tested using **Postman** to verify both
