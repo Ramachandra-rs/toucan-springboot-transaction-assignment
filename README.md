@@ -58,7 +58,7 @@ The application uses an embedded H2 database for persistence and exposes the fun
 
 The application follows a layered architecture:
 
-```text
+
                     Client
                       |
                       v
